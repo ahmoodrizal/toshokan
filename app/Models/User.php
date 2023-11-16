@@ -33,6 +33,16 @@ class User extends Authenticatable
         return $this->role == self::ROLE_MANAGER;
     }
 
+    public function uncompletedProfile()
+    {
+        if ($this->phone_number === null || $this->city === null || $this->address === null || $this->date_of_birth === null || $this->affilation === null) return true;
+    }
+
+    public function isSuspend()
+    {
+        return $this->status === 'suspend';
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -42,7 +52,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'phone_number',
+        'city',
+        'address',
+        'date_of_birth',
+        'affilation',
+        'status',
     ];
 
     /**
