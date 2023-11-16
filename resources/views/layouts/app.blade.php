@@ -13,6 +13,7 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/datepicker.min.js"></script>
 </head>
 
 <body class="font-sans antialiased">
@@ -24,6 +25,7 @@
             {{ $slot }}
         </main>
     </div>
+
 </body>
 
 </html>
