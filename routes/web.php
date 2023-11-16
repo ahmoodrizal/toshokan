@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +44,11 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
+
+    // User Management
+    Route::prefix('users')->name('users.')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
+    });
 });
 
 require __DIR__ . '/auth.php';
