@@ -8,6 +8,9 @@
                 <a href="{{ route('login') }}" type="button"
                     class="px-4 py-2 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg sm:mr-3 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">Sign
                     In</a>
+                <a href="{{ route('register') }}" type="button"
+                    class="px-4 py-2 text-sm font-medium text-center text-indigo-700 border border-indigo-700 rounded-lg hover:text-white hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:border-indigo-400 dark:text-indigo-400 dark:hover:text-white dark:hover:bg-indigo-500 dark:focus:ring-indigo-900">Sign
+                    Up</a>
             @endguest
             @auth
                 <!-- Settings Dropdown -->
@@ -30,6 +33,11 @@
                         </x-slot>
 
                         <x-slot name="content">
+                            @if (Auth::user()->role === 'Admin' || Auth::user()->role === 'Manager')
+                                <x-dropdown-link :href="route('admin.index')">
+                                    {{ __('Admin Area') }}
+                                </x-dropdown-link>
+                            @endif
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
