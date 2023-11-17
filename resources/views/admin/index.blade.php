@@ -42,7 +42,7 @@
                             </svg>
                             <p class="font-medium tracking-wide">Publishers Data</p>
                         </div>
-                        <div
+                        <a href="{{ route('admin.categories.index') }}"
                             class="flex flex-row items-center justify-center py-3 rounded-md cursor-pointer sm:flex-col bg-slate-300 sm:gap-y-2 gap-x-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.2" stroke="currentColor" class="w-8 h-8 sm:w-9 sm:h-9">
@@ -51,7 +51,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
                             </svg>
                             <p class="font-medium tracking-wide">Categories Data</p>
-                        </div>
+                        </a>
                         <div
                             class="flex flex-row items-center justify-center py-3 rounded-md cursor-pointer sm:flex-col bg-slate-300 sm:gap-y-2 gap-x-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
