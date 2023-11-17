@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublisherController;
@@ -70,6 +71,16 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
         Route::get('/{publisher:slug}/edit', [PublisherController::class, 'edit'])->name('edit');
         Route::put('/{publisher}', [PublisherController::class, 'update'])->name('update');
         Route::delete('/{publisher}', [PublisherController::class, 'destroy'])->name('destroy');
+    });
+
+    // Author Management
+    Route::prefix('authors')->name('authors.')->group(function () {
+        Route::get('/', [AuthorController::class, 'index'])->name('index');
+        Route::get('/create', [AuthorController::class, 'create'])->name('create');
+        Route::post('/', [AuthorController::class, 'store'])->name('store');
+        Route::get('/{author:slug}/edit', [AuthorController::class, 'edit'])->name('edit');
+        Route::put('/{author}', [AuthorController::class, 'update'])->name('update');
+        Route::delete('/{author}', [AuthorController::class, 'destroy'])->name('destroy');
     });
 });
 
