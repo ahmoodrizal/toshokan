@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,9 +57,19 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
         Route::get('/', [CategoryController::class, 'index'])->name('index');
         Route::get('/create', [CategoryController::class, 'create'])->name('create');
         Route::post('/', [CategoryController::class, 'store'])->name('store');
-        Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('edit');
-        Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('update');
-        Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('destroy');
+        Route::get('/{category:slug}/edit', [CategoryController::class, 'edit'])->name('edit');
+        Route::put('/{category}', [CategoryController::class, 'update'])->name('update');
+        Route::delete('/{category}', [CategoryController::class, 'destroy'])->name('destroy');
+    });
+
+    // Publisher Management
+    Route::prefix('publishers')->name('publishers.')->group(function () {
+        Route::get('/', [PublisherController::class, 'index'])->name('index');
+        Route::get('/create', [PublisherController::class, 'create'])->name('create');
+        Route::post('/', [PublisherController::class, 'store'])->name('store');
+        Route::get('/{publisher:slug}/edit', [PublisherController::class, 'edit'])->name('edit');
+        Route::put('/{publisher}', [PublisherController::class, 'update'])->name('update');
+        Route::delete('/{publisher}', [PublisherController::class, 'destroy'])->name('destroy');
     });
 });
 
