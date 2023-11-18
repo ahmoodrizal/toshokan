@@ -50,13 +50,13 @@
                 <p class="text-xl font-semibold tracking-widest md:text-3xl">Latest Books</p>
             </div>
             <div class="container mx-auto mt-8">
-                <div class="grid grid-cols-3 gap-6 overflow-hidden sm:grid-cols-6">
-                    <div class="bg-stone-300 aspect-[4/6] overflow-hidden rounded-md"></div>
-                    <div class="bg-stone-300 aspect-[4/6] overflow-hidden rounded-md"></div>
-                    <div class="bg-stone-300 aspect-[4/6] overflow-hidden rounded-md"></div>
-                    <div class="bg-stone-300 aspect-[4/6] overflow-hidden rounded-md"></div>
-                    <div class="bg-stone-300 aspect-[4/6] overflow-hidden rounded-md"></div>
-                    <div class="bg-stone-300 aspect-[4/6] overflow-hidden rounded-md"></div>
+                <div class="grid grid-cols-2 gap-6 overflow-hidden sm:gap-8 sm:grid-cols-6">
+                    @foreach ($latestBooks as $latest_book)
+                        <div class="bg-stone-300 aspect-[4/6] overflow-hidden rounded-md cursor-pointer">
+                            <img src="{{ Storage::url('books/' . $latest_book->cover) }}" alt="book-cover"
+                                class="shadow-md">
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
