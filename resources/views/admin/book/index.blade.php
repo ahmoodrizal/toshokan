@@ -30,6 +30,9 @@
                                           Publisher
                                       </th>
                                       <th scope="col" class="px-6 py-3">
+                                          Categories
+                                      </th>
+                                      <th scope="col" class="px-6 py-3">
                                           Action
                                       </th>
                                   </tr>
@@ -50,6 +53,14 @@
                                           <td class="px-6 py-4">
                                               {{ $book->publisher->name }}
                                           </td>
+                                          <td class="flex flex-wrap gap-2 px-6 py-4">
+                                              @forelse ($book->categories as $category)
+                                                  <span
+                                                      class="px-2 py-1 text-xs text-white rounded-full bg-slate-800">{{ $category->name }}</span>
+                                              @empty
+                                                  <p class="font-medium">Didn't Have Category</p>
+                                              @endforelse
+                                          </td>
                                           <td class="px-6 py-4">
                                               <div class="flex flex-row gap-x-3">
                                                   <a href="{{ route('admin.books.edit', $book) }}"
@@ -66,7 +77,7 @@
                                       </tr>
                                   @empty
                                       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                          <th colspan="4" scope="row"
+                                          <th colspan="6" scope="row"
                                               class="px-6 py-4 font-semibold text-center text-gray-900 whitespace-nowrap dark:text-white">
                                               Books Data Not Found
                                           </th>

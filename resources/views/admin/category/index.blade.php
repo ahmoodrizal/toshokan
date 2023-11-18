@@ -24,7 +24,7 @@
                                           Title
                                       </th>
                                       <th scope="col" class="px-6 py-3">
-                                          slug
+                                          Number of Books
                                       </th>
                                       <th scope="col" class="px-6 py-3">
                                           Action
@@ -42,7 +42,7 @@
                                               {{ $category->name }}
                                           </th>
                                           <td class="px-6 py-4">
-                                              {{ $category->slug }}
+                                              {{ $category->books_count }}
                                           </td>
                                           <td class="px-6 py-4">
                                               <div class="flex flex-row gap-x-3">
