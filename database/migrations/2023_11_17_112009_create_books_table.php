@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('isbn')->unique();
             $table->text('description')->nullable();
             $table->string('cover')->nullable();
-            $table->date('release_date')->nullable();
+            $table->string('year')->nullable();
             $table->string('language')->nullable();
             $table->string('page_number')->nullable();
             $table->softDeletes();

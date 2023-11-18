@@ -4,7 +4,7 @@
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <p class="mb-4 text-lg font-medium">Create New Book</p>
-                    <form action="{{ route('admin.books.store') }}" method="post">
+                    <form action="{{ route('admin.books.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="grid grid-cols-1 gap-2 sm:gap-6 sm:grid-cols-3">
                             <div class="">
@@ -64,6 +64,20 @@
                                 <x-text-input id="description" name="description" type="text"
                                     class="block w-full mt-1" :value="old('description')" autofocus autocomplete="description" />
                                 <x-input-error class="mt-2" :messages="$errors->get('description')" />
+                            </div>
+                            <div class="">
+                                <x-input-label for="year" :value="__('Book Year Release')" />
+                                <x-text-input id="year" name="year" type="text" class="block w-full mt-1"
+                                    :value="old('year')" autofocus autocomplete="year" />
+                                <x-input-error class="mt-2" :messages="$errors->get('year')" />
+                            </div>
+                            <div class="">
+                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    for="file_input">Upload Book Cover</label>
+                                <input
+                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                    id="file_input" name="cover" type="file">
+                                <x-input-error class="mt-2" :messages="$errors->get('cover')" />
                             </div>
                         </div>
                         <button type="submit"

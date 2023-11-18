@@ -18,7 +18,7 @@ class Book extends Model
         'isbn',
         'description',
         'cover',
-        'release_date',
+        'year',
         'language',
         'page_number'
     ];

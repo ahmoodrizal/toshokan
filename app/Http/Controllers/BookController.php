@@ -7,6 +7,7 @@ use App\Models\Author;
 use App\Models\Publisher;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -46,10 +47,19 @@ class BookController extends Controller
             'isbn' => ['required', 'numeric', 'digits:13'],
             'description' => ['required'],
             'language' => ['required'],
-            'page_number' => ['required', 'numeric']
+            'page_number' => ['required', 'numeric'],
+            'year' => ['required', 'numeric'],
+            'cover' => ['required', 'mimes:jpg,png,jpeg', 'image']
         ]);
 
         $data['slug'] = Str::slug($request['title']);
+
+        if ($request->hasFile('cover')) {
+            // upload image
+            $image = $request->file('cover');
+            $image->storeAs('public/books', $image->hashName());
+            $data['cover'] = $image->hashName();
+        }
 
         Book::create($data);
 
@@ -91,14 +101,25 @@ class BookController extends Controller
             'isbn' => ['required', 'numeric', 'digits:13'],
             'description' => ['required'],
             'language' => ['required'],
-            'page_number' => ['required', 'numeric']
+            'page_number' => ['required', 'numeric'],
+            'year' => ['required', 'numeric'],
+            'cover' => ['nullable', 'mimes:jpg,png,jpeg', 'image']
         ]);
 
         $data['slug'] = Str::slug($request['title']);
 
+        if ($request->hasFile('cover')) {
+            // upload image
+            $image = $request->file('cover');
+            $image->storeAs('public/books', $image->hashName());
+            // delete old image
+            Storage::delete('public/books/' . $book->cover);
+            $data['cover'] = $image->hashName();
+        }
+
         $book->update($data);
 
-        return redirect(route('admin.books.index'))->with('success', 'Success update book data');
+        return back()->with('success', 'Success update book data');
     }
 
     /**

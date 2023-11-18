@@ -3,9 +3,12 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+                    @if (session('success'))
+                        <x-alert>{{ session('success') }}</x-alert>
+                    @endif
                     <p class="mb-4 text-lg font-medium">Update Book <span class="text-sky-600">{{ $book->title }}</span>
                     </p>
-                    <form action="{{ route('admin.books.update', $book) }}" method="post">
+                    <form action="{{ route('admin.books.update', $book) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="grid grid-cols-1 gap-2 sm:gap-6 sm:grid-cols-3">
@@ -66,6 +69,25 @@
                                 <x-text-input id="description" name="description" type="text"
                                     class="block w-full mt-1" :value="old('description', $book->description)" autofocus autocomplete="description" />
                                 <x-input-error class="mt-2" :messages="$errors->get('description')" />
+                            </div>
+                            <div class="">
+                                <x-input-label for="year" :value="__('Book Year Release')" />
+                                <x-text-input id="year" name="year" type="text" class="block w-full mt-1"
+                                    :value="old('year', $book->year)" autofocus autocomplete="year" />
+                                <x-input-error class="mt-2" :messages="$errors->get('year')" />
+                            </div>
+                            <div class="h-56 overflow-hidden rounded-md w-36">
+                                <x-input-label for="cover-preview" :value="__('Cover Preview')" />
+                                <img src="{{ Storage::url('books/' . $book->cover) }}" alt="cover-preview"
+                                    class="object-cover mt-1 rounded-md">
+                            </div>
+                            <div class="">
+                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    for="file_input">Upload Book Cover</label>
+                                <input
+                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                    id="file_input" name="cover" type="file">
+                                <x-input-error class="mt-2" :messages="$errors->get('cover')" />
                             </div>
                         </div>
                         <button type="submit"
