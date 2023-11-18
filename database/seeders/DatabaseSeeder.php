@@ -4,6 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Author;
+use App\Models\Book;
+use App\Models\Category;
+use App\Models\Publisher;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -38,5 +42,35 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(22)->create();
+
+        Author::factory(5)->create();
+        Publisher::factory(5)->create();
+
+        Category::create([
+            'name' => 'Comic',
+            'slug' => 'comic',
+        ]);
+
+        Category::create([
+            'name' => 'Novel',
+            'slug' => 'novel',
+        ]);
+
+        Category::create([
+            'name' => 'Japan',
+            'slug' => 'japan',
+        ]);
+
+        Category::create([
+            'name' => 'History',
+            'slug' => 'history',
+        ]);
+
+        Category::create([
+            'name' => 'English',
+            'slug' => 'english',
+        ]);
+
+        Book::factory(25)->create();
     }
 }

@@ -7,9 +7,9 @@
                           <x-alert>{{ session('success') }}</x-alert>
                       @endif
                       <div class="flex justify-end mb-3 ">
-                          <a href="{{ route('admin.authors.create') }}"
+                          <a href="{{ route('admin.books.create') }}"
                               class="px-3 py-2 text-sm text-white bg-indigo-600 rounded-md hover:bg-indigo-700">
-                              Create New Author
+                              Create New Book
                           </a>
                       </div>
                       <div class="relative overflow-x-auto">
@@ -24,7 +24,10 @@
                                           Title
                                       </th>
                                       <th scope="col" class="px-6 py-3">
-                                          Number of Books
+                                          Author
+                                      </th>
+                                      <th scope="col" class="px-6 py-3">
+                                          Publisher
                                       </th>
                                       <th scope="col" class="px-6 py-3">
                                           Action
@@ -32,23 +35,26 @@
                                   </tr>
                               </thead>
                               <tbody>
-                                  @forelse ($authors as $author)
+                                  @forelse ($books as $book)
                                       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                           <td class="px-6 py-4">
-                                              {{ $loop->iteration }}
+                                              {{ $books->firstItem() + $loop->index }}
                                           </td>
                                           <th scope="row"
                                               class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                              {{ $author->name }}
+                                              {{ $book->title }}
                                           </th>
                                           <td class="px-6 py-4">
-                                              {{ $author->books_count }}
+                                              {{ $book->author->name }}
+                                          </td>
+                                          <td class="px-6 py-4">
+                                              {{ $book->publisher->name }}
                                           </td>
                                           <td class="px-6 py-4">
                                               <div class="flex flex-row gap-x-3">
-                                                  <a href="{{ route('admin.authors.edit', $author) }}"
+                                                  <a href="{{ route('admin.books.edit', $book) }}"
                                                       class="text-emerald-700">Update</a>
-                                                  <form action="{{ route('admin.authors.destroy', $author) }}"
+                                                  <form action="{{ route('admin.books.destroy', $book) }}"
                                                       method="post">
                                                       @csrf
                                                       @method('delete')
@@ -62,13 +68,15 @@
                                       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                           <th colspan="4" scope="row"
                                               class="px-6 py-4 font-semibold text-center text-gray-900 whitespace-nowrap dark:text-white">
-                                              Authors Data Not Found
+                                              Books Data Not Found
                                           </th>
                                       </tr>
                                   @endforelse
                               </tbody>
                           </table>
-
+                      </div>
+                      <div class="mt-8">
+                          {{ $books->onEachSide(1)->links() }}
                       </div>
                   </div>
               </div>

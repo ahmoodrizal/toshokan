@@ -13,7 +13,7 @@ class PublisherController extends Controller
      */
     public function index()
     {
-        $publishers = Publisher::orderBy('name')->get();
+        $publishers = Publisher::withCount('books')->orderBy('name')->get();
 
         return view('admin.publisher.index', compact('publishers'));
     }
