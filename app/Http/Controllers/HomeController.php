@@ -15,4 +15,9 @@ class HomeController extends Controller
             'latestBooks' => $latestBooks,
         ]);
     }
+
+    public function detail(Book $book)
+    {
+        return view('detail-book', compact('book'));
+    }
 }

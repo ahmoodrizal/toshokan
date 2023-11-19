@@ -50,11 +50,14 @@
                 <p class="text-xl font-semibold tracking-widest md:text-3xl">Latest Books</p>
             </div>
             <div class="container mx-auto mt-8">
-                <div class="grid grid-cols-2 gap-6 overflow-hidden sm:gap-8 sm:grid-cols-6">
+                <div class="grid grid-cols-2 gap-6 overflow-hidden sm:gap-8 sm:grid-cols-3 xl:grid-cols-6">
                     @foreach ($latestBooks as $latest_book)
-                        <div class="bg-stone-300 aspect-[4/6] overflow-hidden rounded-md cursor-pointer">
-                            <img src="{{ Storage::url('books/' . $latest_book->cover) }}" alt="book-cover"
-                                class="shadow-md">
+                        <div class="bg-stone-100 aspect-[4/6] shadow-md rounded-md cursor-pointer p-4">
+                            <a href="{{ route('book-detail', $latest_book) }}">
+                                <img src="{{ Storage::url('books/' . $latest_book->cover) }}" alt="book-cover"
+                                    class="object-cover rounded-md shadow-md">
+                                <p class="mt-4 text-sm font-medium">{{ $latest_book->title }}</p>
+                            </a>
                         </div>
                     @endforeach
                 </div>
