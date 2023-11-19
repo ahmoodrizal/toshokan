@@ -87,7 +87,7 @@
                 </li>
                 @auth
                     <li>
-                        <x-zlink :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        <x-zlink :href="route('transaction.dashboard')" :active="request()->routeIs('transaction.dashboard')">
                             {{ __('My Dashboard') }}
                         </x-zlink>
                     </li>

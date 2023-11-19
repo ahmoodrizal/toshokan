@@ -44,7 +44,7 @@
                                     <p>Total Page</p>
                                     <p class="font-medium">{{ $book->page_number }} page</p>
                                 </div>
-                                <a href=""
+                                <a href="{{ route('transaction.create', $book) }}"
                                     class="block w-1/2 px-4 py-3 mx-auto mt-12 text-sm text-center text-white rounded-md lg:mx-0 bg-slate-800 hover:bg-slate-900">
                                     Rent This Book
                                 </a>

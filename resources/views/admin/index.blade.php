@@ -52,7 +52,7 @@
                             </svg>
                             <p class="font-medium tracking-wide">Categories Data</p>
                         </a>
-                        <div
+                        <a href="{{ route('admin.transactions.index') }}"
                             class="flex flex-row items-center justify-center py-3 rounded-md cursor-pointer sm:flex-col bg-slate-300 sm:gap-y-2 gap-x-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.2" stroke="currentColor" class="w-8 h-8 sm:w-9 sm:h-9">
@@ -61,7 +61,7 @@
                             </svg>
 
                             <p class="font-medium tracking-wide">Transactions Data</p>
-                        </div>
+                        </a>
                         <div
                             class="flex flex-row items-center justify-center py-3 rounded-md cursor-pointer sm:col-span-2 sm:flex-col bg-slate-300 sm:gap-y-2 gap-x-2">
                             <p class="font-medium tracking-wide">Upcoming Menu</p>

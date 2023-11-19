@@ -18,6 +18,9 @@
                                         Transaction Id
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Customer Name
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Book Title
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -30,7 +33,7 @@
                                         Fine
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Message
+                                        Action
                                     </th>
                                 </tr>
                             </thead>
@@ -46,6 +49,10 @@
                                         </th>
                                         <th scope="row"
                                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {{ $transaction->user->name }}
+                                        </th>
+                                        <th scope="row"
+                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {{ $transaction->book->title }}
                                         </th>
                                         <td class="px-6 py-4 uppercase">
@@ -57,15 +64,18 @@
                                         <td class="px-6 py-4">
                                             Rp. {{ $transaction->fine ?? 0 }}
                                         </td>
-                                        <td class="px-6 py-4">
-                                            {{ $transaction->status !== 'pending' ? $transaction->note : 'Segera ambil buku di perpustakaan' }}
+                                        <td class="px-6 py-4 uppercase">
+                                            <a href="{{ route('admin.transactions.edit', $transaction) }}"
+                                                class="px-3 py-2 text-sm font-medium text-white rounded-md bg-emerald-600 hover:bg-emerald-800">
+                                                Update
+                                            </a>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                        <th colspan="7" scope="row"
+                                        <th colspan="8" scope="row"
                                             class="px-6 py-4 font-semibold text-center text-gray-900 whitespace-nowrap dark:text-white">
-                                            You didn't have a rent book
+                                            Transactions Data Not Found
                                         </th>
                                     </tr>
                                 @endforelse
