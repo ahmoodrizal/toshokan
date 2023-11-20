@@ -9,10 +9,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $latestBooks = Book::latest()->get();
+        $latestBooks = Book::latest()->take(6)->get();
+        $popularBooks = Book::withCount('transactions')->orderBy('transactions_count', 'desc')->take(6)->get();
 
         return view('welcome', [
             'latestBooks' => $latestBooks,
+            'popularBooks' => $popularBooks
         ]);
     }
 

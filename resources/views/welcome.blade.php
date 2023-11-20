@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Toshokan - Modern Library</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -29,13 +29,16 @@
                 <p class="text-xl font-semibold tracking-widest md:text-3xl">Popular Books</p>
             </div>
             <div class="container mx-auto mt-8">
-                <div class="grid grid-cols-3 gap-6 overflow-hidden sm:grid-cols-6">
-                    <div class="bg-emerald-300 aspect-[4/6] overflow-hidden rounded-md"></div>
-                    <div class="bg-emerald-300 aspect-[4/6] overflow-hidden rounded-md"></div>
-                    <div class="bg-emerald-300 aspect-[4/6] overflow-hidden rounded-md"></div>
-                    <div class="bg-emerald-300 aspect-[4/6] overflow-hidden rounded-md"></div>
-                    <div class="bg-emerald-300 aspect-[4/6] overflow-hidden rounded-md"></div>
-                    <div class="bg-emerald-300 aspect-[4/6] overflow-hidden rounded-md"></div>
+                <div class="grid grid-cols-2 gap-6 overflow-hidden sm:gap-8 sm:grid-cols-3 xl:grid-cols-6">
+                    @foreach ($popularBooks as $popular_book)
+                        <div class="bg-stone-100 aspect-[4/6] shadow-md rounded-md cursor-pointer p-4">
+                            <a href="{{ route('book-detail', $popular_book) }}">
+                                <img src="{{ Storage::url('books/' . $popular_book->cover) }}" alt="book-cover"
+                                    class="object-cover rounded-md shadow-md">
+                                <p class="mt-4 text-sm font-medium">{{ $popular_book->title }}</p>
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
