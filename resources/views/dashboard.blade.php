@@ -8,6 +8,9 @@
                     @if (session('success'))
                         <x-alert>{{ session('success') }}</x-alert>
                     @endif
+                    @if (auth()->user()->isSuspend())
+                        <x-alert-danger>Status Anda Diblokir, Harap Selesaikan Pinjaman Buku Yang Telat</x-alert-danger>
+                    @endif
                     <div class="relative overflow-x-auto">
                         <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
                             <thead
@@ -50,7 +53,8 @@
                                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {{ $transaction->book->title }}
                                         </th>
-                                        <td class="px-6 py-4 uppercase">
+                                        <td
+                                            class="px-6 py-4 uppercase {{ $transaction->status === 'late' ? 'text-red-700' : '' }}">
                                             {{ $transaction->status }}
                                         </td>
                                         <td class="px-6 py-4">

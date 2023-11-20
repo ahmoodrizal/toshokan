@@ -56,7 +56,8 @@
                                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {{ $transaction->book->title }}
                                         </th>
-                                        <td class="px-6 py-4 uppercase">
+                                        <td
+                                            class="px-6 py-4 uppercase {{ $transaction->status === 'late' ? 'text-red-700' : '' }}">
                                             {{ $transaction->status }}
                                         </td>
                                         <td class="px-6 py-4">

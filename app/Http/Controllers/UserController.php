@@ -17,4 +17,18 @@ class UserController extends Controller
 
         return view('admin.user.index', compact('users'));
     }
+
+    public function show(User $user)
+    {
+        return view('admin.user.show', compact('user'));
+    }
+
+    public function store(Request $request, User $user)
+    {
+        $user->update([
+            'status' => 'active'
+        ]);
+
+        return redirect(route('admin.users.show', compact('user')));
+    }
 }

@@ -45,13 +45,13 @@
                                         <td class="px-6 py-4">
                                             {{ $user->role }}
                                         </td>
-                                        <td class="px-6 py-4">
+                                        <td class="px-6 py-4 {{ $user->status === 'suspend' ? 'text-red-700' : '' }}">
                                             {{ $user->status }}
                                         </td>
                                         <td class="px-6 py-4">
                                             <div class="flex flex-row gap-x-3">
-                                                <a href="#" class="text-indigo-700">Detail</a>
-                                                <a href="#" class="text-emerald-700">Update</a>
+                                                <a href="{{ route('admin.users.show', $user) }}"
+                                                    class="text-indigo-700">Detail</a>
                                                 <button class="text-rose-700">Delete</button>
                                             </div>
                                         </td>

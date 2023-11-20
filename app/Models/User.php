@@ -44,6 +44,7 @@ class User extends Authenticatable
         return $this->status === 'suspend';
     }
 
+
     /**
      * The attributes that are mass assignable.
      *

@@ -32,6 +32,10 @@ class TransactionController extends Controller
 
     public function create(Book $book)
     {
+        if (auth()->user()->isSuspend()) {
+            return redirect(route('transaction.dashboard'));
+        }
+
         return view('transaction.create', compact('book'));
     }
 

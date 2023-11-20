@@ -9,8 +9,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
-use App\Models\Transaction;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -67,6 +65,8 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
     // User Management
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('/{user}', [UserController::class, 'show'])->name('show');
+        Route::put('/{user}', [UserController::class, 'store'])->name('store');
     });
 
     // Category Management
