@@ -1,6 +1,5 @@
-<section
-    class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply">
-    <div class="max-w-screen-xl px-4 py-48 mx-auto text-center lg:py-64">
+<section class="bg-gray-700 bg-center bg-no-repeat bg-cover bg-hero-background bg-blend-multiply">
+    <div class="max-w-screen-xl px-4 py-48 mx-auto text-center lg:py-72">
         <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">Start
             Exploring Various Kinds of Books</h1>
         <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">by reading you can find out about
