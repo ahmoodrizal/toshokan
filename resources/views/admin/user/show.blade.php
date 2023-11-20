@@ -17,9 +17,9 @@
                             </form>
                         @endif
                     </div>
-                    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
-                        <div class="md:col-span-2">
-                            <div class="md:w-4/5">
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-7">
+                        <div class=" md:col-span-3">
+                            <div class="">
                                 <div class="flex items-center justify-between mb-4">
                                     <p class="text-sm font-medium text-slate-700">Name</p>
                                     <p class="text-sm font-medium text-slate-700">{{ $user->name }}</p>
@@ -57,12 +57,32 @@
                                 <div class="flex items-center justify-between mb-4">
                                     <p class="text-sm font-medium text-slate-700">Status</p>
                                     <span
-                                        class="px-3 py-2 font-medium uppercase text-sm text-white rounded-md {{ $user->status === 'suspend' ? 'bg-red-700' : 'bg-slate-700' }}">{{ $user->status }}</span>
+                                        class="px-3 py-1 font-medium uppercase text-sm text-white rounded-full {{ $user->status === 'suspend' ? 'bg-red-700' : 'bg-slate-700' }}">{{ $user->status }}</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-red-200">
-                            AA
+                        <div class="md:px-10 md:col-span-4">
+                            <p class="mb-2 text-sm font-medium text-slate-700">Latest Transactions</p>
+                            <div class="grid grid-cols-6 mb-4">
+                                <p class="text-sm font-semibold text-slate-800">No</p>
+                                <p class="col-span-2 text-sm font-semibold text-slate-800">Date</p>
+                                <p class="col-span-2 text-sm font-semibold text-slate-800">Transaction Id</p>
+                                <p class="text-sm font-semibold text-slate-800">Status</p>
+                            </div>
+                            @forelse ($user->transactions as $transaction)
+                                <div class="grid grid-cols-6 mb-3">
+                                    <p class="text-sm font-medium text-slate-700">{{ $loop->iteration }}</p>
+                                    <p class="col-span-2 text-sm font-medium text-slate-700">
+                                        {{ $transaction->created_at->format('d M Y') }}</p>
+                                    <a href="{{ route('admin.transactions.edit', $transaction) }}"
+                                        class="col-span-2 text-sm font-semibold text-sky-700">
+                                        {{ $transaction->transaction_id }}</a>
+                                    <p class="text-sm font-medium uppercase text-slate-700">
+                                        {{ $transaction->status }}</p>
+                                </div>
+                            @empty
+                                <p class="mt-6 text-sm font-medium text-center text-slate-700">No Transaction Data</p>
+                            @endforelse
                         </div>
                     </div>
                 </div>

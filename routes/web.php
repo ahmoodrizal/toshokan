@@ -65,7 +65,7 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
     // User Management
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
-        Route::get('/{user}', [UserController::class, 'show'])->name('show');
+        Route::get('/{user:slug}', [UserController::class, 'show'])->name('show');
         Route::put('/{user}', [UserController::class, 'store'])->name('store');
     });
 
