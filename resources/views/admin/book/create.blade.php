@@ -87,6 +87,19 @@
                                     id="file_input" name="cover" type="file">
                                 <x-input-error class="mt-2" :messages="$errors->get('cover')" />
                             </div>
+                            <div class="md:col-span-2">
+                                <label for="category"
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                                    Book Categories
+                                </label>
+                                <select id="category" name="category[]" multiple="multiple"
+                                    class="categories-box bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500">
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                                <x-input-error class="" :messages="$errors->get('category')" />
+                            </div>
                         </div>
                         <button type="submit"
                             class="px-3 py-2 mt-4 text-sm text-white bg-indigo-600 rounded-md sm:w-1/6 hover:bg-indigo-700">Create</button>
@@ -96,3 +109,8 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+    $(document).ready(function() {
+        $('.categories-box').select2();
+    });
+</script>

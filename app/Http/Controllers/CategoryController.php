@@ -13,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::withCount('books')->orderBy('name')->get();
+        $categories = Category::withCount('books')->orderBy('name')->simplePaginate(8);
 
         return view('admin.category.index', compact('categories'));
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Author;
+use App\Models\Category;
 use App\Models\Publisher;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -28,10 +29,12 @@ class BookController extends Controller
     {
         $authors = Author::orderBy('name')->get();
         $publishers = Publisher::orderBy('name')->get();
+        $categories = Category::orderBy('name')->get();
 
         return view('admin.book.create', [
             'authors' => $authors,
-            'publishers' => $publishers
+            'publishers' => $publishers,
+            'categories' => $categories
         ]);
     }
 
@@ -61,7 +64,8 @@ class BookController extends Controller
             $data['cover'] = $image->hashName();
         }
 
-        Book::create($data);
+        $book = Book::create($data);
+        $book->categories()->sync($request['category']);
 
         return redirect(route('admin.books.index'))->with('success', 'Success add new book data');
     }
@@ -81,11 +85,13 @@ class BookController extends Controller
     {
         $authors = Author::orderBy('name')->get();
         $publishers = Publisher::orderBy('name')->get();
+        $categories = Category::orderBy('name')->get();
 
         return view('admin.book.edit', [
             'book' => $book,
             'authors' => $authors,
-            'publishers' => $publishers
+            'publishers' => $publishers,
+            'categories' => $categories
         ]);
     }
 
@@ -115,6 +121,10 @@ class BookController extends Controller
             // delete old image
             Storage::delete('public/books/' . $book->cover);
             $data['cover'] = $image->hashName();
+        }
+
+        if ($request['category']) {
+            $book->categories()->sync($request['category']);
         }
 
         $book->update($data);

@@ -84,12 +84,33 @@
                                     :value="old('year', $book->year)" autofocus autocomplete="year" />
                                 <x-input-error class="mt-2" :messages="$errors->get('year')" />
                             </div>
-                            <div class="h-56 overflow-hidden rounded-md w-36">
+                            <div class="col-span-3 md:w-3/4">
+                                <label for="category"
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                                    Current Categories
+                                </label>
+                                <div class="flex gap-x-2">
+                                    @foreach ($book->categories as $item)
+                                        <span
+                                            class="block px-3 py-1 mt-4 mb-4 text-sm text-white rounded-full w-fit bg-slate-600">
+                                            {{ $item->name }}
+                                        </span>
+                                    @endforeach
+                                </div>
+                                <select id="category" name="category[]" multiple="multiple"
+                                    class="categories-box bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-4/5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500">
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                                <x-input-error class="" :messages="$errors->get('category')" />
+                            </div>
+                            <div class="h-56 mx-auto overflow-hidden rounded-md w-36 md:mx-0">
                                 <x-input-label for="cover-preview" :value="__('Cover Preview')" />
                                 <img src="{{ Storage::url('books/' . $book->cover) }}" alt="cover-preview"
                                     class="object-cover mt-1 rounded-md">
                             </div>
-                            <div class="">
+                            <div class="md:col-span-2 md:w-1/2">
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                     for="file_input">Upload Book Cover</label>
                                 <input
@@ -106,3 +127,8 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+    $(document).ready(function() {
+        $('.categories-box').select2();
+    });
+</script>
