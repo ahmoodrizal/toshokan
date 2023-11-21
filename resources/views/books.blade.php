@@ -21,7 +21,7 @@
                                 <x-input-label for="search" :value="__('Search books')" class="mb-1 text-sm" />
                                 <div class="flex items-center gap-x-2">
                                     <x-text-input id="search" name="search" type="text" class="block w-full"
-                                        :value="request()->query('search')" required autofocus autocomplete="search" />
+                                        :value="request()->query('search')" required autocomplete="search" />
                                     <button type="submit" class="px-3 py-2 bg-indigo-700 rounded-md">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="white" class="w-6 h-6">
