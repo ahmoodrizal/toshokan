@@ -11,6 +11,13 @@
                         </div>
                         <div class="sm:col-span-2 sm:pr-6 md:pr-10">
                             <p class="mb-4 text-xl font-semibold uppercase md:text-2xl">{{ $book->title }}</p>
+                            <div class="flex mb-4 gap-x-2">
+                                @foreach ($book->categories as $item)
+                                    <span class="px-3 py-1.5 rounded-full bg-zinc-700 bg- text-sm text-white">
+                                        {{ $item->name }}
+                                    </span>
+                                @endforeach
+                            </div>
                             <p class="mb-4 text-base font-light text-justify text-slate-600 md:text-md">Lorem ipsum
                                 dolor sit
                                 amet
