@@ -31,10 +31,10 @@
             <div class="container mx-auto mt-8">
                 <div class="grid grid-cols-2 gap-6 overflow-hidden sm:gap-8 sm:grid-cols-3 xl:grid-cols-6">
                     @foreach ($popularBooks as $popular_book)
-                        <div class="bg-stone-100 aspect-[4/6] shadow-md rounded-md cursor-pointer p-4">
+                        <div class="bg-stone-100 aspect-[4/6] shadow-md rounded-md cursor-pointer p-4 mb-2">
                             <a href="{{ route('book-detail', $popular_book) }}">
                                 <img src="{{ Storage::url('books/' . $popular_book->cover) }}" alt="book-cover"
-                                    class="object-cover rounded-md shadow-md">
+                                    class="object-cover h-full rounded-md shadow-md">
                                 <p class="mt-4 text-sm font-medium">{{ $popular_book->title }}</p>
                             </a>
                         </div>
@@ -55,10 +55,10 @@
             <div class="container mx-auto mt-8">
                 <div class="grid grid-cols-2 gap-6 overflow-hidden sm:gap-8 sm:grid-cols-3 xl:grid-cols-6">
                     @foreach ($latestBooks as $latest_book)
-                        <div class="bg-stone-100 aspect-[4/6] shadow-md rounded-md cursor-pointer p-4">
+                        <div class="bg-stone-100 aspect-[4/6] shadow-md rounded-md cursor-pointer p-4 mb-2">
                             <a href="{{ route('book-detail', $latest_book) }}">
                                 <img src="{{ Storage::url('books/' . $latest_book->cover) }}" alt="book-cover"
-                                    class="object-cover rounded-md shadow-md">
+                                    class="object-cover h-full rounded-md shadow-md">
                                 <p class="mt-4 text-sm font-medium">{{ $latest_book->title }}</p>
                             </a>
                         </div>

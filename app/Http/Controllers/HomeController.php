@@ -18,6 +18,18 @@ class HomeController extends Controller
         ]);
     }
 
+    public function books(Request $request)
+    {
+        if (!$request->query('search')) {
+            $books = Book::latest()->paginate(24);
+        } else {
+            $books = Book::where('title', 'like', '%' . $request['search'] . '%')->paginate(12);
+        }
+
+
+        return view('books', compact('books'));
+    }
+
     public function detail(Book $book)
     {
         return view('detail-book', compact('book'));

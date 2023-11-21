@@ -31,10 +31,6 @@ use Illuminate\Support\Facades\Route;
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/books', function () {
-    return view('books');
-})->name('books');
-
 Route::get('/about', function () {
     return view('about');
 })->name('about');
@@ -45,6 +41,7 @@ Route::get('/faq', function () {
 
 // Home
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/books', [HomeController::class, 'books'])->name('books');
 Route::get('/books/{book:slug}', [HomeController::class, 'detail'])->name('book-detail');
 
 
