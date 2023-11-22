@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BookController;
+use App\Http\Controllers\API\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +30,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/latest-books', [BookController::class, 'latestBooks']);
     Route::get('/popular-books', [BookController::class, 'popularBooks']);
     Route::get('/books/search/{title}', [BookController::class, 'searchByTitle']);
+
+    // Transaction Controller
+    Route::get('/transactions', [TransactionController::class, 'userTransaction']);
+    Route::post('/transaction/create', [TransactionController::class, 'create']);
 });
