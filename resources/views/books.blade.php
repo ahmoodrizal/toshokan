@@ -33,12 +33,17 @@
                             </form>
                         </div>
                     </div>
-                    <div class="grid grid-cols-3 gap-4 sm:grid-cols-4 lg:grid-cols-6">
+                    <div class="grid grid-cols-3 gap-4 lg:gap-8 sm:grid-cols-4 lg:grid-cols-6">
                         @forelse ($books as $book)
-                            <a href="{{ route('book-detail', $book) }}" class="overflow-hidden rounded-md shadow-md">
+                            <div class="relative overflow-hidden rounded-md shadow-md cursor-pointer group">
+                                <a href="{{ route('book-detail', $book) }}"
+                                    class="absolute flex items-center justify-center w-full h-full px-3 transition-all duration-300 ease-in-out group-hover:bg-black/75">
+                                    <p class="hidden text-sm font-semibold text-center text-white group-hover:block">
+                                        {{ $book->title }}</p>
+                                </a>
                                 <img src="{{ Storage::url('books/' . $book->cover) }}" alt="cover"
                                     class="object-cover h-full rounded-md">
-                            </a>
+                            </div>
                         @empty
                             <p class="col-span-6 mt-6 text-xl font-medium text-center text-slate-700">Books Not Found
                             </p>
