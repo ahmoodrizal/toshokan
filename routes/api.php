@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\BookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,12 @@ Route::post('/login', [AuthController::class, 'login']);
 
 // Auth API
 Route::middleware('auth:sanctum')->group(function () {
-    // User Management
+    // User Controller
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/update', [AuthController::class, 'update']);
+
+    // Book Controller
+    Route::get('/latest-books', [BookController::class, 'latestBooks']);
+    Route::get('/popular-books', [BookController::class, 'popularBooks']);
+    Route::get('/books/search/{title}', [BookController::class, 'searchByTitle']);
 });

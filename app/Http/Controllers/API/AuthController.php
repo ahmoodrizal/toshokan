@@ -70,4 +70,25 @@ class AuthController extends Controller
             'message' => 'Logout Success'
         ], 200);
     }
+
+    public function update(Request $request)
+    {
+        $data = $request->validate([
+            'name' => ['nullable'],
+            'email' => ['nullable', 'email', 'unique:users'],
+            'phone_number' => ['required', 'numeric'],
+            'city' => ['required'],
+            'address' => ['required'],
+            'affilation' => ['required'],
+        ]);
+        $data['slug'] = Str::slug($request['name']);
+
+        $user = auth()->user();
+        $user->update($data);
+
+        return response()->json([
+            'message' => 'User data has been updated',
+            'user' => $user,
+        ], 200);
+    }
 }
