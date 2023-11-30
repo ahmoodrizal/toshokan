@@ -58,7 +58,7 @@ class BookController extends Controller
 
         if (count($books) > 0) {
             return response()->json([
-                'message' => 'Fetch all books success',
+                'message' => 'Fetch all books by title success',
                 'data' => $books,
             ], 200);
         } else {
@@ -66,6 +66,23 @@ class BookController extends Controller
                 'message' => 'Books Data Not Found',
                 'data' => [],
             ], 404);
+        }
+    }
+
+    public function bookDetail($id)
+    {
+        $book = Book::with('author:id,name', 'publisher:id,name', 'categories:id,name')->findOrFail($id);
+
+        if (!$book) {
+            return response()->json([
+                'message' => 'Book Not Found',
+                'data' => [],
+            ], 404);
+        } else {
+            return response()->json([
+                'message' => 'Fetch book detail success',
+                'data' => $book,
+            ], 200);
         }
     }
 }

@@ -75,7 +75,7 @@ class AuthController extends Controller
     {
         $data = $request->validate([
             'name' => ['nullable'],
-            'email' => ['nullable', 'email', 'unique:users'],
+            'email' => ['nullable', 'email', 'unique:users,email,' . auth()->user()->id],
             'phone_number' => ['required', 'numeric'],
             'city' => ['required'],
             'address' => ['required'],
@@ -90,5 +90,15 @@ class AuthController extends Controller
             'message' => 'User data has been updated',
             'user' => $user,
         ], 200);
+    }
+
+    public function user()
+    {
+        $user = auth()->user();
+
+        return response()->json([
+            'message' => 'fetch user detail success',
+            'data' => $user,
+        ]);
     }
 }
