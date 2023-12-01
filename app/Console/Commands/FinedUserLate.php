@@ -34,10 +34,7 @@ class FinedUserLate extends Command
         ])->get();
 
         foreach ($transactions as $transaction) {
-            $late = Carbon::parse($transaction->return_date)->diffInDays(now());
-            if ($late == 0) {
-                return;
-            }
+            $late = Carbon::parse($transaction->return_date)->startOfDay()->diffInDays(now()->startOfDay());
             $transaction->update([
                 'status' => 'late',
                 'note' => 'Anda terlamat mengembalikan buku, denda berlaku',
