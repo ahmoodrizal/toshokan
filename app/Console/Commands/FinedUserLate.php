@@ -28,10 +28,9 @@ class FinedUserLate extends Command
      */
     public function handle()
     {
-        $transactions = Transaction::where([
-            ['status', 'active',],
-            ['return_date', '<', now()]
-        ])->get();
+        $transactions = Transaction::whereIn('status', ['active', 'late'])
+            ->where('return_date', '<', now())
+            ->get();
 
         foreach ($transactions as $transaction) {
             $late = Carbon::parse($transaction->return_date)->startOfDay()->diffInDays(now()->startOfDay());
