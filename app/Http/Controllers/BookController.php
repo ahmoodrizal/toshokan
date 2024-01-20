@@ -129,7 +129,7 @@ class BookController extends Controller
 
         $book->update($data);
 
-        return back()->with('success', 'Success update book data');
+        return redirect(route('admin.books.index'))->with('success', 'Success update book data');
     }
 
     /**

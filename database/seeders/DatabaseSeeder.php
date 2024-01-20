@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now()
         ]);
 
-        User::factory(22)->create();
+        User::factory(8)->create();
 
         Author::factory(5)->create();
         Publisher::factory(5)->create();
@@ -71,6 +71,6 @@ class DatabaseSeeder extends Seeder
             'slug' => 'english',
         ]);
 
-        Book::factory(25)->create();
+        Book::factory(5)->create();
     }
 }
